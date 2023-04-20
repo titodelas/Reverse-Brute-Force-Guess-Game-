@@ -1,7 +1,9 @@
 import random
 import time
 import os
-
+import fade
+from colorama import *
+init(autoreset=True)
 
 def adivinanza(dificultad):
     # Añadimos un menu de dificultades
@@ -40,18 +42,8 @@ def adivinanza(dificultad):
     puntos = 0
     tiempo_inicio = time.time()
 
-    print("Adivina el número secreto del 1 al", maximo if dificultad == "personalizado" else 200 if dificultad not in [
+    print(f"{Fore.RESET}Adivina el número secreto del 1 al", maximo if dificultad == "personalizado" else 200 if dificultad not in [
           "extremo"] else 10, "en un máximo de", intentos_max if intentos_max > 0 else "infinitos" if dificultad != "extremo" else "1", "intentos.")
-
-    def mostrar_tiempo_restante(tiempo_total):
-        while tiempo_total:
-            minutos, segundos = divmod(tiempo_total, 60)
-            tiempo = f"{minutos:02d}:{segundos:02d}"
-            os.system("title " + "Tiempo Restante: " + tiempo)
-            time.sleep(1)
-            tiempo_total -= 1
-
-        mostrar_tiempo_restante(tiempo_max)
 
     while True:
         intentos += 1
@@ -94,16 +86,29 @@ def adivinanza(dificultad):
                 print("Tienes", puntos, "puntos")
 
 
-dificultad = input("""
-                                      Selecciona la dificultad 
-                ╔═══════════════════════════════════════════════════════════════════════╗
-                ║   facil            > 10 Intentos | 1 - 50  | 100 puntos | 30 segundos ║
-                ║   medio            > 7 Intentos  | 1 - 100 | 150 puntos | 60 segundos ║
-                ║   dificil          > 5 Intentos  | 1 - 150 | 200 puntos | 90 segundos ║
-                ║   infinito         > ∞ Intentos  | 1 - 200 |     --     | ∞ segundos  ║
-                ║   extremo          > 1 Intento   | 1 - 10  |     --     | 10 segundos ║
-                ║   personalizada    > Intentos, Rango y Tiempo personalizable          ║
-                ╚═══════════════════════════════════════════════════════════════════════╝
-                
-                                    Introduce tu dificultat >> """)
+print(fade.pinkred("""
+
+8888888888 888             888888 888     888 8888888888 .d8888b.   .d88888b.  
+888        888               "88b 888     888 888       d88P  Y88b d88P" "Y88b 
+888        888                888 888     888 888       888    888 888     888 
+8888888    888                888 888     888 8888888   888        888     888 
+888        888                888 888     888 888       888  88888 888     888 
+888        888                888 888     888 888       888    888 888     888 
+888        888                88P Y88b. .d88P 888       Y88b  d88P Y88b. .d88P 
+8888888888 88888888           888  "Y88888P"  8888888888 "Y8888P88  "Y88888P"  
+                            .d88P                                              
+                          .d88P"       github.com/titodelas                                         
+                         888P"                                                 
+
+                        Selecciona la dificultad 
+╔═══════════════════════════════════════════════════════════════════════╗
+║   facil            > 10 Intentos | 1 - 50  | 100 puntos | 30 segundos ║
+║   medio            > 7 Intentos  | 1 - 100 | 150 puntos | 60 segundos ║
+║   dificil          > 5 Intentos  | 1 - 150 | 200 puntos | 90 segundos ║
+║   infinito         > ∞ Intentos  | 1 - 200 |     --     | ∞ segundos  ║
+║   extremo          > 1 Intento   | 1 - 10  |     --     | 10 segundos ║
+║   personalizada    > Intentos, Rango y Tiempo personalizable          ║
+╚═══════════════════════════════════════════════════════════════════════╝"""))
+dificultad = input(f'{Fore.RED}Introduce tu dificultat >> ')
+
 adivinanza(dificultad)
