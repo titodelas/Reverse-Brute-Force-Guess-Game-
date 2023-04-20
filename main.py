@@ -85,7 +85,7 @@ def adivinanza(dificultad):
                 puntos = 0
                 print("Tienes", puntos, "puntos")
 
-
+os.system('cls')
 print(fade.pinkred("""
 
 8888888888 888             888888 888     888 8888888888 .d8888b.   .d88888b.  
